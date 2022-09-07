@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <title>Converter</title>
+        <style>
+            *{
+                padding: 0;
+                margin: 0;
+                box-sizing: border-box;
+            }
+            body{
+                height: 100vh;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: white;
+            }
+            .main{
+                width: 550px;
+                height: 400px;
+                background: rgb(211, 211, 211);
+                padding: 20px;
+                border-radius: 5px;
+            }
+            form{
+                width: 100%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                justify-content: space-evenly;
+                flex-direction: column;
+            }
+            input[type='submit']{
+                width: 50%;
+                height: 40px;
+                border-radius: 5px;
+                outline: none;
+                border: 2px solid rgb(27, 27, 9);
+            }
+            
+        </style>
+    </head>
+    <body>
+        <div class="main">
+       <form action = "http://127.0.0.1:5000/uploader" method = "POST" 
+          enctype = "multipart/form-data">
+          <div class="question">
+            <h1>Upload question</h1>
+              <input type = "file" class="file_input" name = "Questions_File" />
+          </div>
+          <div class="ans">
+            <h1>Upload Answer</h1>
+              <input type = "file" name = "Answer_File" />
+            </div>
+            <input type = "submit"/>
+       </form>
+       </div>
+    </body>
+ </html>
