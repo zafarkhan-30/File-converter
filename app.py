@@ -132,17 +132,6 @@ def upload_file1():
             if "Answer" not in dic:
                 dic["Answer"] = []
             dic["Answer"].append(a)
-
-
-        z=dic["option-A"]
-        a=[]
-        dic1={}
-        for i in z:
-            z=i.replace("a)","")
-            a.append(z)
-            dic1['Option-A']=a
-        
-        # print("valuee--",dic1)
             
 
         data = [dic]
