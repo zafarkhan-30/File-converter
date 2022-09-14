@@ -1,8 +1,4 @@
-
-from email.policy import default
-from importlib.resources import contents
 from flask import Flask, render_template, request, send_from_directory
-from flask_sqlalchemy import SQLAlchemy
 from docx import Document
 import docx
 import xlsxwriter
@@ -12,12 +8,8 @@ import os
 app = Flask(__name__)
 
 
+
 @app.route('/')
-def home():
-    return "Hello"
-
-
-@app.route('/upload')
 def upload_file():
     return render_template('upload.html')
 
@@ -32,7 +24,7 @@ def upload_file1():
         Answer_Doc = Document(Answer_File)
 
         name1 = os.path.splitext(Questions_File.filename)[0]
-        print(name1)
+    
         # Questions_Doc
         Questions = []
         for paragraph in Questions_Doc.paragraphs:
@@ -43,17 +35,13 @@ def upload_file1():
         for paragraph1 in Answer_Doc.paragraphs:
             Answer.append(paragraph1.text)
 
-        #
         Ans = []
         for character1 in Answer:
             rep = character1.replace("  ", "")
-            # c=d.replace("\t","")
             Ans.append(rep)
             if '' in Ans:
                 Ans.remove('')
 
-        # print(completedtext1)
-        # print(Ans)
         Que = []
         for character in Questions:
             d = character.replace("  ", "")
@@ -68,39 +56,37 @@ def upload_file1():
             final_Questions.append(x)
             if '' in final_Questions:
                 final_Questions.remove('')
-        # print(final_Questions)
 
         dic = {}
         for i in final_Questions:
             for j in i:
                 if j.startswith("a)"):
-                    z=j.replace("a)","")
+                    z = j.replace("a)", "")
                     if "option-A" not in dic:
                         dic["option-A"] = []
                     dic["option-A"].append(z)
                     print(dic["option-A"])
 
                 elif j.startswith("b)") or j.startswith("b "):
-                    z=j.replace("b)","") or j.replace("b","")
+                    z = j.replace("b)", "") or j.replace("b", "")
                     if "option-B" not in dic:
                         dic["option-B"] = []
                     dic["option-B"].append(z)
 
                 elif j.startswith("c)"):
-                    z=j.replace("c)","")
+                    z = j.replace("c)", "")
                     if "option-C" not in dic:
                         dic["option-C"] = []
                     dic["option-C"].append(z)
 
                 elif j.startswith("d)") or j.startswith(("d")):
-                    z=j.replace("d)","")
+                    z = j.replace("d)", "")
                     if "option-D" not in dic:
                         dic["option-D"] = []
                     dic["option-D"].append(z)
-                    # print(dic["option-D"])
 
                 elif j.startswith("e)"):
-                    z=j.replace("e)","")
+                    z = j.replace("e)", "")
                     if "option-E" not in dic:
                         dic["option-E"] = []
                     dic["option-E"].append(z)
@@ -114,9 +100,6 @@ def upload_file1():
                         for z in x:
                             if z == '':
                                 x.remove(z)
-
-                
-                
 
         for i in range(len(Ans)):
             if Ans[i] == "(a)":
@@ -132,7 +115,6 @@ def upload_file1():
             if "Answer" not in dic:
                 dic["Answer"] = []
             dic["Answer"].append(a)
-            
 
         data = [dic]
         if name1.endswith("1"):
@@ -194,7 +176,6 @@ def upload_file1():
 
             workbook.close()
             return send_from_directory("", "WithOutImageQuestion 2.xlsx", download_name="Question Answer sheet 2.xlsx")
-        
 
 
 if __name__ == '__main__':
