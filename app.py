@@ -166,7 +166,7 @@ def upload_file1():
                 # worksheet.write_column(index+1, 8, entry['Solution'])
 
             workbook.close()
-            return send_from_directory("", "WithOutImageQuestion 1.xlsx", download_name="Question Answer sheet.xlsx")
+            return send_from_directory("", "WithOutImageQuestion 1.xlsx", download_name=f"{name1}.xlsx")
         else:
             workbook = xlsxwriter.Workbook("WithOutImageQuestion 2.xlsx")
             worksheet = workbook.add_worksheet("firstsheet")
@@ -198,7 +198,7 @@ def upload_file1():
                 # worksheet.write_column(index+1, 8, entry['Solution'])
 
             workbook.close()
-            return send_from_directory("", "WithOutImageQuestion 2.xlsx", download_name="Question Answer sheet 2.xlsx")
+            return send_from_directory("", "WithOutImageQuestion 2.xlsx", download_name=f"{name1}.xlsx")
 
 
 if __name__ == '__main__':
